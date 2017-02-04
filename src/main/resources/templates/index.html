@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+</head>
+<body>
+<!--ユーティリティー-->
+    <p th:text="${#strings.toUpperCase('welcome to spring boot')}"></p>
+    <p th:text="${#dates.format(new java.util.Date(), 'dd/MMM/yyyy/ HH:mm')}"></p>
+
+<!--変数式の変数の受け取り-->
+    <!--<p th:text="'from parameter ... id=' + ${param.id[0] + ' ,name = ' + param.name[0]}"></p>-->
+
+    <!--<form action="/mstest" >-->
+        <!--<input value="内科" name="test" />-->
+        <!--<input value="外科" name="test" />-->
+        <!--<input value="マイナー科" name="test" />-->
+
+        <!--<button type="submit">送信</button>-->
+    <!--</form>-->
+
+
+<table>
+        <tr>
+            <th>ID</th><th>県名</th><th>都市名</th><th>花</th>
+        </tr>
+        <tr th:each="prefectureEntity : ${prefectureEntityList}">
+            <td th:text="${prefectureEntity.id}"></td>
+            <td th:text="${prefectureEntity.name}"></td>
+            <td th:text="${prefectureEntity.capital}"></td>
+            <td th:text="${prefectureEntity.flower}"></td>
+        </tr>
+
+        <tr>
+            <td colspan="4">
+                <table class="navi">
+                <tr>
+                    <td><div style="text-align : left;">
+                            <a th:if="${num} != 1" th:href="@{/page/} + ${num - 1}">← Prev</a>
+                    </div></td>
+                    <td><div style="text-align : center;"></div></td>
+                    <td><div style="text-align : right;">
+                            <a th:if="${num} != ${pageNum}" th:href="@{/page/} + ${num + 1}">Next →</a>
+                        <p th:text="${pageNumber}"></p>
+                    </div></td>
+                </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

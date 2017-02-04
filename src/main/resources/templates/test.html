@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+
+
+<form method="post">
+    <fieldset>
+        <div>
+            <input id="abc" name="word" type="hidden" placeholder="文字" size="50" th:value="prefecture"/>
+        </div>
+    </fieldset>
+    <button type="submit">送信</button>
+</form>
+
+<p th:text="${prefecture}">Onions</p>
+<span name="king" th:text="${prefecture}"/>
+
+
+
+
+
+</body>
+</html>

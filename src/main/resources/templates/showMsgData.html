@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    <style>
+        h1{
+            font-size: 18pt;
+            font-weight: bold;
+            color: gray;
+        }
+
+        body{
+            font-size: 13px;
+            color: gray;
+            margin: 15px 25px;
+        }
+
+        tr{
+            margin: 5px;
+        }
+
+        th{
+            padding: 5px;
+            color:white;
+            background: gray;
+        }
+
+        td{
+            padding: 5px;
+            color: black;
+            background: #e0e0ff;
+        }
+
+        .err{
+            color: red;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h1 th:text="${title}">MyMsg page</h1>
+    <p th:text="${msg}"></p>
+
+
+    <table>
+        <form method="post" action="/msg" th:object="${data}">
+
+            <input type="hidden" name="id" th:value="${id}" />
+
+            <tr><td><label for="title">タイトル</label></td>
+                <td><input id="title" name="title" th:value="*{title}" type="text" th:errorclass="err"/>
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="err"></div>
+                </td>
+            </tr>
+            <tr><td><label for="message">メッセージ</label></td>
+                <td><textarea id="message" name="message" type="text" th:value="*{message}" />
+                    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" th:errorclass="err"></div>
+                </td>
+            </tr>
+            <tr><td><label for="mydata">MYDATA_ID</label></td>
+                <td><input id="mydata" name="myData" type="text"/></td>
+            </tr>
+
+            <tr><td></td><td><button type="submit">送信</button> </td></tr>
+        </form>
+    </table>
+
+
+
+    <table>
+        <tr><th>ID</th><th>名前</th><th>タイトル</th></tr>
+
+        <tr th:each="data : ${dataList}">
+            <td><p th:text="${data.id}"></p></td>
+            <td><p th:text="${data.mydata.name}"></p></td>
+            <td><p th:text="${data.title}"></p></td>
+        </tr>
+    </table>
+
+
+</body>
+</html>

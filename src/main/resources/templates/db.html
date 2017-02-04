@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    <style>
+        h1{
+            font-size: 18pt;
+            font-weight: bold;
+            color: gray;
+        }
+
+        body{
+            font-size: 13px;
+            color: gray;
+            margin: 15px 25px;
+        }
+
+        tr{
+            margin: 5px;
+        }
+
+        th{
+            padding: 5px;
+            color:white;
+            background: gray;
+        }
+
+        td{
+            padding: 5px;
+            color: black;
+            background: #e0e0ff;
+        }
+
+        .err{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <table>
+        <form method="post" action="/lesson5" th:object="${data}">
+
+            <p th:text="${msg}"></p>
+            <!--<ul>-->
+                <!--<li th:each="error : ${#fields.detailedErrors()}" class="err" th:text="${error.message}">-->
+                <!--</li>-->
+            <!--</ul>-->
+
+            <tr><td><label for="name">名前</label></td>
+                <td><input id="name" name="name" th:value="*{name}" type="text" th:errorclass="err"/>
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="err"></div>
+                </td>
+            </tr>
+            <tr><td><label for="age">年齢</label></td>
+                <td><input id="age" name="age" type="text" th:value="*{age}" />
+                    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" th:errorclass="err"></div>
+                </td>
+            </tr>
+            <tr><td><label for="mail">メール</label></td>
+                <td><input id="mail" name="mail" th:value="*{mail}" type="text"/></td>
+            </tr>
+            <tr><td><label for="memo">メモ</label></td>
+                <td><input id="memo" name="memo" type="text" th:value="*{memo}"/></td>
+            </tr>
+            <tr><td></td><td><button type="submit">送信</button> </td></tr>
+        </form>
+    </table>
+
+
+
+    <table>
+        <tr><td>ID</td>
+            <td>名前</td>
+            <td>年齢</td>
+            <td>メール</td>
+            <td>メモ</td>
+        </tr>
+        <div th:each="data : ${dataList}">
+            <tr><td><p th:text="${data.id}"></p></td>
+                <td><p th:text="${data.name}"></p></td>
+                <td><p th:text="${data.age}"></p></td>
+                <td><p th:text="${data.mail}"></p></td>
+                <td><p th:text="${data.memo}"></p></td>
+            </tr>
+        </div>
+    </table>
+
+
+</body>
+</html>

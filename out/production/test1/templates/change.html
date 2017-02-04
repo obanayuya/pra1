@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<h1>編集画面</h1>
+
+
+<div>変更内容を入力してください</div>
+
+
+<!--<form action="/form" method="post" th:object="${person}">-->
+    <!--<input type="text" name="firstName" th:field="*{firstName}" /><br />-->
+    <!--<input type="text" name="lastName" th:field="*{lastName}" /><br />-->
+    <!--<input type="text" name="email" th:field="*{email}" /><br />-->
+    <!--<input type="text" name="tel" th:field="*{tel}" /><br />-->
+    <!--<input type="submit"/ >-->
+<!--</form>-->
+
+<form method="post" th:object="${prefecture}">
+
+    <label>
+        県名　：<input type="text" name="prefname" th:field="*{name}"/>
+    </label>
+    <br/>
+    <label>
+        都市名：<input type="text" name="capitalname" th:field="*{capital}"/>
+    </label>
+    <br/>
+
+    <label>
+        県花　：<input type="text" name="flowername" th:field="*{flower}"/>
+    </label>
+    <br/>
+
+    <label>
+        県鳥　：<input type="text" name="birdname" th:field="*{bird}"/>
+    </label>
+    <br/>
+
+    <label>
+        県木　：<input type="text" name="treename" th:field="*{tree}"/>
+    </label>
+    <br />
+
+    <label>
+        地域　：<input type="text" name="areaname" th:field="*{area}"/>
+    </label>
+
+    <br/><br/>
+
+    <button name="save">変更を保存する</button>
+</form>
+
+<a href="http://localhost:8080/prefecture">
+    <button name="back">戻る</button>
+</a>
+
+
+</body>
+</html>

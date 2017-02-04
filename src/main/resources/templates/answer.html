@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<p>hello</p>
+
+<form method="post">
+    <fieldset>
+        <div>
+            <input id="abc" name="search" type="search" th:value="${search}" placeholder="文字" size="50"/>
+        </div>
+    </fieldset>
+    <button type="submit">送信</button>
+</form>
+
+<a th:href="@{/regi}">
+    <button name="regi">新規登録</button>
+</a>
+<br/>
+
+
+
+
+<table>
+    <tr th:each="pref : ${prefectures}">
+        <td>
+            <a th:href="@{/edit/} + ${pref.id}">
+                    <button name="edit">編集</button>
+            </a>
+            <a th:href="@{/delete/} + ${pref.id}">
+                <button type="submit">削除</button>
+            </a>
+        </td>
+        <td th:text="${pref.name}">Onions</td>
+        <td th:text="${pref.capital}">Onions</td>
+        <td th:text="${pref.tree}">Onions</td>
+        <td th:text="${pref.flower}">Onions</td>
+        <td th:text="${pref.bird}">Onions</td>
+
+        <td th:each="areaentity : ${pref.areaList}">
+            <span th:text="${areaentity.tagname}"></span>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>

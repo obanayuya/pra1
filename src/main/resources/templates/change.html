@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:style="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<h1>編集画面</h1>
+
+
+<div>変更内容を入力してください</div>
+
+
+<!--<form action="/form" method="post" th:object="${person}">-->
+<!--<input type="text" name="firstName" th:field="*{firstName}" /><br />-->
+<!--<input type="text" name="lastName" th:field="*{lastName}" /><br />-->
+<!--<input type="text" name="email" th:field="*{email}" /><br />-->
+<!--<input type="text" name="tel" th:field="*{tel}" /><br />-->
+<!--<input type="submit"/ >-->
+<!--</form>-->
+
+<form method="post" th:object="${prefecture}">
+
+    <label>
+        県名　：<input type="text" name="prefname" th:field="*{name}"/>
+    </label>
+    <br/>
+    <label>
+        都市名：<input type="text" name="capitalname" th:field="*{capital}"/>
+    </label>
+    <br/>
+
+    <label>
+        県花　：<input type="text" name="flowername" th:field="*{flower}"/>
+    </label>
+    <br/>
+
+    <label>
+        県鳥　：<input type="text" name="birdname" th:field="*{bird}"/>
+    </label>
+    <br/>
+
+    <label>
+        県木　：<input type="text" name="treename" th:field="*{tree}"/>
+    </label>
+    <br/>
+
+    <button name="save">変更を保存する</button>
+    <br/>
+
+</form>
+
+<a href="http://localhost:8080/prefecture">
+    <button name="back">戻る</button>
+</a>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<!--tagnamesはPrefectureDtoのareaListフィールド（AreaEntity型）が入っている-->
+<div th:each="areaEntity : ${areaEntityList}">
+    <form method="post" th:action="@{/tag/delete/} + ${prefecture.id}">
+    <span th:text="${areaEntity.tagname}" th:value="${tagname}"></span>
+
+        <input name="tagid" type="hidden"  th:value="${areaEntity.tagid}"/>
+
+
+
+        <!--削除を押した時にインプットボックスに値が残るようにするためのコード-->
+        <!--<input type="text"  style="display: none" name="prefname" th:field="*{name}"/>-->
+        <!--<input type="text" style="display: none" name="capitalname" th:field="*{capital}"/>-->
+        <!--<input type="text" style="display: none" name="flowername" th:field="*{flower}"/>-->
+        <!--<input type="text" style="display: none" name="birdname" th:field="*{bird}"/>-->
+        <!--<input type="text" style="display: none" name="treename" th:field="*{tree}"/>-->
+
+
+        <button type="submit">削除</button>
+    </form>
+</div>
+
+
+
+
+
+<!--追加の処理の記述-->
+<!--tagnamesはPrefectureDtoのareaListフィールド（AreaEntity型）が入っている-->
+    <form method="post" th:action="@{/tag/insert/} + ${prefecture.id}" th:object="${areaEntityList}">
+
+        <input type="text" name="addtagname" />
+        <button type="submit">追加</button>
+    </form>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<!--チェックボックスの練習のためのコード-->
+<form method="post" th:action="@{/test/} + ${prefecture.id}" th:object="${prefectureDto}">
+    <div th:each="areaEntity : ${prefectureDto.areaList}">
+
+
+        <label th:for="${#ids.next('areaList')}" th:text="${areaEntity.tagname}"></label>
+        <!--<input type="checkbox" th:value="${areaEntity}" th:field="*{areaList}" />　-->
+        <input type="checkbox" th:value="${areaEntity.tagid}" th:field="*{areaList}" />　
+
+
+
+        <!--<label th:for="${#ids.next('areaList')}" th:text="*{areaEntity.tagname}"></label>-->
+        <!--<input type="checkbox" th:value="*{areaEntity.tagid}" th:field="*{areaList}" />　-->
+
+
+        <!--<input type="checkbox" th:value="*{capital}" th:field="*{capital}" />　-->
+
+
+        <!--<input type="checkbox" th:value="*{tree}" th:field="*{capital}" />　-->
+
+
+        <!--<label th:for="${#ids.next('name')}" th:text="*{flower}"></label>-->
+        <!--<input type="checkbox" th:value="*{flower}" th:field="*{flower}" />　-->
+
+
+        <!--<label th:for="${#ids.next('bird')}" th:text="*{bird}"></label>-->
+        <!--<input type="checkbox" th:value="*{bird}" th:field="*{bird}" />　-->
+    </div>
+    <button type="submit">送信</button>
+</form>
+
+
+
+</body>
+</html>
