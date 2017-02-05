@@ -1,0 +1,10 @@
+spring:
+  # DB PROPERTIES
+  datasource:
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: my-vpc-mysql-rds.c7fraqj3wqfb.ap-northeast-1.rds.amazonaws.com
+#
+#server:
+#  port: 80
